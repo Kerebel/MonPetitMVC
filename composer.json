@@ -1,0 +1,17 @@
+{
+    "name": "bastien.kerebel/mon-petit-m-v-c",
+    "description": "Description of porject MonPetitMVC.",
+    "authors": [
+        {
+            "name": "bastien.kerebel",
+            "email": "bastienkerebel@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "APP\\": "src",
+            "Tools\\": "includes"
+        }
+    }
+}
