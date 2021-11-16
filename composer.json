@@ -7,7 +7,9 @@
             "email": "bastienkerebel@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "twig/twig": "v3.3.3"
+    },
     "autoload": {
         "psr-4": {
             "APP\\": "src",

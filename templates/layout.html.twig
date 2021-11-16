@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content=""width="device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        {% block navigation %}
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Mon Petit MVC</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/?c=gestionClient&a=ChercheUn">Voir un client</a></li>
+                <li><a href="?c=gestionClient&a=ChercheTous">Voir tous les clients</a></li>
+                <li><a href="/?c=gestionClient&a=creerClient">Créer un client</a></li>
+              </ul>
+            </div>
+        </nav>
+        {% endblock %}
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        {% block contenu %}{% endblock %}
+    </body>
+    <footer>
+        {% block footer %} <p> Mentions légales </p> {%  endblock %}
+    </footer>
+</html>
