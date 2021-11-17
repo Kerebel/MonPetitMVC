@@ -81,5 +81,38 @@ class Repository {
        $nb = $res['total'];
        return $nb;
     }
+    
+    public function __call($methode, $params) {
+        if (preg_match("#^findBy#", $methode)) {
+            return $this->traiteFindBy($methode, array_values($params[0]));
+        }
+    }
+    
+    private function traiteFindBy($methode, $params) {
+        $criteres = str_replace("findBy", "", $methode);
+        $criteres = explode("_and_", $criteres);
+        if (count($criteres) > 0) {
+            $sql = 'select * from ' . $this->table . " where ";
+            $pasPremier = false;
+            foreach($criteres as $critere){
+                if ($pasPremier) {
+                    $sql .= ' and ';
+                }
+                $sql .= $critere . " = ? ";
+                $pasPremier = true;
+            }
+            $lignes = $this->connexion->prepare($sql);
+            $lignes->execute($params);
+            $lignes->setFetchMode(PDO::FETCH_CLASS, $this->classeNameLong, null);
+            return $lignes->fetchAll();
+        }      
+    }
+    
+    public function findColumnDistinctValues($colonne){
+        $sql = "select distinct " . $colonne . " libelle from " . $this->table . " order by 1";
+        //return $this->connexion->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        $tab = $this->connexion->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+        return $tab;
+    }
 }
 

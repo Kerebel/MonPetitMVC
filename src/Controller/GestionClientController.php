@@ -75,5 +75,32 @@ class GestionClientController {
         $nbClients = $repository->countRows();
         echo "nombre de clients : " . $nbClients;
     }
+    
+     public function testFindBy($params){
+        $repository = Repository::getRepository("APP\Entity\Client");
+        //$params = array("titreCli" => "Monsieur", "villeCli" => "Toulon");
+        //$clients = $repository->findBytitreCli_and_villeCli($params);
+        $params = array("cpCli" => "14000", "titreCli" => "Madame");
+        $clients = $repository->findBycpCli_and_titreCli($params);
+        $r = new ReflectionClass($this);
+        $vue = str_replace('Controller', 'View', $r->getShortName()) . "/tousClients.html.twig";
+        MyTwig::afficheVue($vue, array('clients' => $clients));
+    }
+    
+    public function rechercheClients($params) {
+        $repository = Repository::getRepository("APP\Entity\Client");
+        $titres = $repository->findColmunDistinctValues('titreCli');
+        $cps = $repository->findColumnDistinctValues('titreCli');
+        $villes = $repository->findColmunDistinctValues('villeCli');
+        $params['titres'] = $titres;
+        $params['cps'] = $cps;
+        $params['villes'] = $villes;
+        $vue = "GestionClientView\\filtreClients.html.twig";
+        MyTwig::afficheVue($vue, $params);
+    }
+    
+    public function recupereDesClients($params){
+        $repository = Repository::getRepository("APP\Entity\Client")
+    }
 }
 
