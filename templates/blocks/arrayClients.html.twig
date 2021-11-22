@@ -1,0 +1,29 @@
+ <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>num</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>adresse</th>
+                <th>complement</th>
+                <th>cp</th>
+                <th>ville</th>
+                <th>tel</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for unClient in clients %}
+                <tr>
+                    <td>{{ unClient.getId() }}</td>
+                    <td>{{ unClient.getTitreCli() }}</td>
+                    <td>{{ unClient.getNomCli() }}</td>
+                    <td>{{ unClient.getPrenomCli() }}</td>
+                    <td>{{ unClient.getAdresseRue1Cli() }}</td>
+                    <td>{{ unClient.getAdresseRue2Cli() }}</td>
+                    <td>{{ unClient.getCpCli() }}</td>
+                    <td>{{ unClient.getVilleCli() }}</td>
+                    <td>{{ unClient.getTelCli() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
