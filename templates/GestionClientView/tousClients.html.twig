@@ -28,6 +28,7 @@
                 <td>{{ unClient.getCpCli() }}</td>
                 <td>{{ unClient.getVilleCli() }}</td>
                 <td>{{ unClient.getTelCli() }}</td>
+                <<td><a class="btn btn-primary" href="http://monpetitmvc/?c=gestionCommande&a=commandesUnClient&id={{ unClient.getId() }}" role="button">Voir commande</a></td>
             </tr>
             {% endfor %}
         </tbody>

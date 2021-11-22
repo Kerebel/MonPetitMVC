@@ -89,18 +89,14 @@ class GestionClientController {
     
     public function rechercheClients($params) {
         $repository = Repository::getRepository("APP\Entity\Client");
-        $titres = $repository->findColmunDistinctValues('titreCli');
+        $titres = $repository->findColumnDistinctValues('titreCli');
         $cps = $repository->findColumnDistinctValues('titreCli');
-        $villes = $repository->findColmunDistinctValues('villeCli');
+        $villes = $repository->findColumnDistinctValues('villeCli');
         $params['titres'] = $titres;
         $params['cps'] = $cps;
         $params['villes'] = $villes;
         $vue = "GestionClientView\\filtreClients.html.twig";
         MyTwig::afficheVue($vue, $params);
-    }
-    
-    public function recupereDesClients($params){
-        $repository = Repository::getRepository("APP\Entity\Client")
     }
 }
 

@@ -1,0 +1,57 @@
+{%  extends "layout.html.twig" %}
+{% block contenu %}
+    <h1> Liste des commandes </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">IdClient</th>
+                <th scope="col">Date</th>
+                <th scope="col">NoFacture</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for uneCommande in commandes %}
+            <tr>
+                <th scope="row"> {{ uneCommande.getId() }}</th>
+                <td>{{ uneCommande.getIdClient() }}</td>
+                <td>{{ uneCommande.getDateCde() }}</td>
+                <td>{{ uneCommande.getNoFacture() }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        {% if client %}
+            <h1> Client </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">num</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">adresse</th>
+                <th scope="col">complement</th>
+                <th scope="col">cp</th>
+                <th scope="col">ville</th>
+                <th scope="col">tel</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"> {{ client.getId() }}</th>
+                <td>{{ client.getNomCli() }}</td>
+                <td>{{ client.getPrenomCli() }}</td>
+                <td>{{ client.getAdresseRue1Cli() }}</td>
+                <td>{% if client.getAdresseRue2Cli()%}
+                    <p> {{ client.getAdresseRue2Cli() }}</p>
+                    {% endif %}
+                </td>
+                <td>{{ client.getCpCli() }}</td>
+                <td>{{ client.getVilleCli() }}</td>
+                <td>{{ client.getTelCli() }}</td>
+        {% endif %}
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+    Nombre de commandes : {{ commandes|length }}
+{% endblock %}

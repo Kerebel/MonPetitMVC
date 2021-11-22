@@ -1,4 +1,6 @@
 <?php
+
+
 define('DS', DIRECTORY_SEPARATOR);
 define('RACINE', new DirectoryIterator(dirname(__FILE__)) . DS . ".." . DS);
 include_once(RACINE . DS . 'config/conf.php');
