@@ -5,6 +5,7 @@ use APP\Model\GestionCommandeModel;
 use ReflectionClass;
 use \Exception;
 use Tools\MyTwig;
+use Tools\Repository;
 
 class GestionCommandeController {
     
@@ -43,11 +44,11 @@ class GestionCommandeController {
             MyTwig::afficheVue($vue, array('commandes' => $commandes));
         } else {
             throw new Exception("Aucune commande à afficher"); */
-        $modele = new GestionCommandeModel();
-        $modeleClient = new \APP\Model\GestionClientModel();
+        $repositoryCommande = Repository::getRepository("APP\Entity\Commande");
+        $repositoryClient = Repository::getRepository("APP\Entity\Client");
         $params = filter_var(intval($params["id"]), FILTER_VALIDATE_INT);
-        $commandes = $modele->findCommandsByClient($params);
-        $client = $modeleClient->find($params);
+        $commandes = $repositoryCommande->findCommandsByClient($params);
+        $client = $repositoryClient->find($params);
         if($commandes){
             $r = new ReflectionClass($this);
             $vue = str_replace('Controller', 'View', $r->getShortName()) . "/commandesParClient.html.twig";

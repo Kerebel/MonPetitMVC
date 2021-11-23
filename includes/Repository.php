@@ -7,10 +7,10 @@ use PDO;
 
 class Repository {
     
-    private $classeNameLong;
-    private $classeNamespace;
-    private $table;
-    private $connexion;
+    protected $classeNameLong;
+    protected $classeNamespace;
+    protected $table;
+    protected $connexion;
    
     public function __construct(string $entity) {
         $tablo = explode("\\", $entity);
