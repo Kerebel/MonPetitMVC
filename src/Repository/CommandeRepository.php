@@ -11,13 +11,13 @@ class CommandeRepository extends Repository {
         parent::__construct($entity);
     }
     
-    public function findCommandsByClient($idClient){
+    /* public function findCommandsByClient($idClient){
         $unObjetPdo = Connexion::getConnexion();
         $sql = "select * from " . $this->table . " where idClient= :idClient";
         $ligne = $unObjetPdo->prepare($sql);
         $ligne->bindValue(':idClient', $idClient, PDO::PARAM_INT);
         $ligne->execute();
-        return $ligne->fetchAll(PDO::FETCH_CLASS, Commande::class);
-    }
+        return $ligne->fetchAll(PDO::FETCH_CLASS, Commande::class); 
+    } */
 }
 

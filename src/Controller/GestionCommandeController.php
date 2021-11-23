@@ -47,7 +47,12 @@ class GestionCommandeController {
         $repositoryCommande = Repository::getRepository("APP\Entity\Commande");
         $repositoryClient = Repository::getRepository("APP\Entity\Client");
         $params = filter_var(intval($params["id"]), FILTER_VALIDATE_INT);
-        $commandes = $repositoryCommande->findCommandsByClient($params);
+        // $commandes = $repositoryCommande->findCommandsByClient($params);
+        //$idClient = array($params);
+        $idClient = array(
+            'idClient' => $params
+        );
+        $commandes = $repositoryCommande->findBy($idClient);
         $client = $repositoryClient->find($params);
         if($commandes){
             $r = new ReflectionClass($this);
