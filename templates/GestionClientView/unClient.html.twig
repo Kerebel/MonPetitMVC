@@ -4,29 +4,13 @@
         <h3>recherche</h3>
         <div class="container">
             <form action="?c=GestionClient&a=chercheUn" method="post">
-                <div class="form-group">
-                    <label for="Numéro du client">Id du client</label>
-                    <select class="form-control" id="titre" name="id">
-                        {% for id in lesId %}
-                            <option>{{ id['id'] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                {{ include('/blocks/clientRecherche.html.twig') }}
                 <input type="submit" value="Voir" class="btn btn-default"/>
             </form>
         </div>
     {% endblock %}
     {% if unClient %}
-        {% block affiche %}
-            <p> <h2> Informations du client numéro {{ unClient.getId() }}</h2></p>
-        <p>{{ unClient.getPrenomCli() }} {{ unClient.getNomCli() }}</p>
-        <p>{{ unClient.getAdresseRue1Cli() }}</p>
-            {% if unClient.getAdresseRue2Cli()%}
-            <p> {{ unClient.getAdresseRue2Cli() }}</p>
-        {% endif %}
-        <p>{{ unClient.getCpCli() }} {{ unClient.getVilleCli() }}</p>
-        <p>{{ unClient.getTelCli() }}</p>
-    {% endblock %}
+        {{ include('/blocks/singleClient.html.twig') }}
     {% endif %}
 {% endblock %}
 {% block footer %}
