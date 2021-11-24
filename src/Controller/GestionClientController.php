@@ -7,6 +7,7 @@ use \Exception;
 use Tools\MyTwig;
 use APP\Entity\Client;
 use Tools\Repository;
+use APP\Repository\ClientRepository;
 
 
 class GestionClientController {
@@ -176,5 +177,18 @@ class GestionClientController {
         }
         MyTwig::afficheVue($vue, $paramsVue);
     }
-}
+    
+    public function statsClients () {
+        $repository = new ClientRepository("APP\Entity\Client");
+        $stats = $repository->statistiquesTousClients();
+        if($stats){
+            $r = new ReflectionClass($this);
+            $vue = str_replace('Controller', 'View', $r->getShortName()) . "/statsClients.html.twig";
+            MyTwig::afficheVue($vue, array('stats' => $stats));
+        } else {
+            throw new Exception("Aucune statistiques à afficher");
+        }
+        
+    }
 
+}

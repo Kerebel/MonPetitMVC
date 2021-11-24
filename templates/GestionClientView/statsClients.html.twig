@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    <h2 class="text-center"> Statistiques des clients </h2>
+<table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>ville</th>
+                <th>Nombre commandes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in stats %}
+                <tr>
+                    <td>{{ stat.id }}</td>
+                    <td>{{ stat.nom }}</td>
+                    <td>{{ stat.prenom }}</td>
+                    <td>{{ stat.ville }}</td>
+                    <td>{{ stat.nbCommande}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+Nombre de clients : {{ stats|length }}
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+    
+{% endblock %}
