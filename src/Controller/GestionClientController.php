@@ -181,6 +181,9 @@ class GestionClientController {
     public function statsClients () {
         $repository = new ClientRepository("APP\Entity\Client");
         $stats = $repository->statistiquesTousClients();
+        $nomCol = array_column($stats, 'nom');
+        $nbCommandeCol = array_column($stats, 'nbCommande');
+        array_multisort($nbCommandeCol,SORT_DESC, $nomCol, SORT_ASC, $stats);
         if($stats){
             $r = new ReflectionClass($this);
             $vue = str_replace('Controller', 'View', $r->getShortName()) . "/statsClients.html.twig";
